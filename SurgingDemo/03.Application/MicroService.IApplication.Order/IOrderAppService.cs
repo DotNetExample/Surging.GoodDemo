@@ -14,6 +14,7 @@ namespace MicroService.IApplication.Order
     
     public interface IOrderAppService : IDependency
     {
+
         Task<JsonResponse> CreateAsync(OrderInfoRequestDto orderInfoRequestDto);
 
         Task<JsonResponse> BatchCreateAsync(IList<OrderInfoRequestDto> orderInfoRequestDtos);
