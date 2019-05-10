@@ -21,7 +21,7 @@ namespace MicroService.IApplication.Order.Dto
     public class OrderInfoRequestDto : LoginUser
     {
 
-      
+        
 
       public  IList<GoodsRequest> GoodsRequests { set; get; }
      

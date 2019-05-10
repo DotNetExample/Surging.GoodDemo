@@ -1,4 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Data;
 using MicroService.Data.Common;
 using MicroService.Data.Extensions;
 using MicroService.Data.Validation;
@@ -7,12 +12,6 @@ using MicroService.IApplication.Order.Dto;
 using MicroService.IModules.Order;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Data;
 using Surging.Core.CPlatform.Utilities;
 using Newtonsoft.Json;
 
@@ -28,8 +27,14 @@ namespace MicroService.Modules.Order
             _orderAppService = orderAppService;
             _orderDetailAppService = orderDetailAppService;
         }
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="orderInfoRequestDto"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> Create(OrderInfoRequestDto orderInfoRequestDto)
         {
+           
             orderInfoRequestDto.ToLoginUser();
             List<GoodsQueryDto> goodsQuerys = await GetGoodsAsync(orderInfoRequestDto);
 
@@ -77,31 +82,58 @@ namespace MicroService.Modules.Order
             List<GoodsQueryDto> goodsQuerys = JsonConvert.DeserializeObject<List<GoodsQueryDto>>(goodsProxy.ToString());
             return goodsQuerys;
         }
-
+        /// <summary>
+        /// 批量新增
+        /// </summary>
+        /// <param name="orderInfoBatchRequestDto"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> BatchCreate(OrderInfoBatchRequestDto orderInfoBatchRequestDto)
         {
+            foreach (var orderInfoRequest in orderInfoBatchRequestDto.OrderInfoRequestList)
+            {
+                orderInfoRequest.ToLoginUser();
+            }
             return await _orderAppService.BatchCreateAsync(orderInfoBatchRequestDto.OrderInfoRequestList);
         }
-
-
-        public async Task<OrderInfoQueryDto> GetForModify(EntityQueryRequest entityQueryRequest)
+        /// <summary>
+        /// 分页获取
+        /// </summary>
+        /// <param name="orderInfoPageRequestDto"></param>
+        /// <returns></returns>
+        public async Task<PageData> GetPageList(OrderInfoPageRequestDto orderInfoPageRequestDto)
         {
-            return await _orderAppService.GetForModifyAsync(entityQueryRequest);
-        }
-
-        public async Task<IEnumerable<OrderInfoQueryDto>> GetPageList(OrderInfoPageRequestDto orderInfoPageRequestDto)
-        {
+            orderInfoPageRequestDto.ToLoginUser();
             return await _orderAppService.GetPageListAsync(orderInfoPageRequestDto);
         }
 
+        /// <summary>
+        /// 获取详情
+        /// </summary>
+        /// <param name="entityQueryRequest"></param>
+        /// <returns></returns>
+        public async Task<OrderInfoQueryDto> GetForModify(EntityQueryRequest entityQueryRequest)
+        {
+            entityQueryRequest.ToLoginUser();
+            return await _orderAppService.GetForModifyAsync(entityQueryRequest);
+        }
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="orderInfoRequestDto"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> Modify(OrderInfoRequestDto orderInfoRequestDto)
         {
+            orderInfoRequestDto.ToLoginUser();
             return await _orderAppService.ModifyAsync(orderInfoRequestDto);
         }
-
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="entityRequest"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> Remove(EntityRequest entityRequest)
         {
-          
+            entityRequest.ToLoginUser();
             return await _orderAppService.RemoveAsync(entityRequest.Ids.ToArray());
         }
 

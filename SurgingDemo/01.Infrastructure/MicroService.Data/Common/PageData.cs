@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MicroService.Data.Common
 {
-    public class PageData
+    public class PageData:LoginUser
     {
         public PageData()
         {

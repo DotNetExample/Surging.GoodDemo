@@ -1,9 +1,10 @@
-﻿using FluentValidation;
-using MicroService.Data.Validation;
-using MicroService.Entity.Order;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FluentValidation;
+using MicroService.Data.Validation;
+using MicroService.Entity.Order;
+
 
 namespace MicroService.Application.Order.Validators
 {

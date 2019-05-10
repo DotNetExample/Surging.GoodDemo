@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MicroService.Data.Common
 {
-   public class EntityRequest
+   public class EntityRequest:LoginUser
     {
         public List<string> Ids { set; get; }
     }

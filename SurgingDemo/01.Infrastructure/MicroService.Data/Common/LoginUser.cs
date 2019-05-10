@@ -18,5 +18,14 @@ namespace MicroService.Data.Common
         public string Password { set; get; }
 
         public string PhoneCode{  set; get; }
+
+        /// <summary>
+        /// 所属公司Id
+        /// </summary>
+        public Guid CompanyId
+        {
+            get;
+            set;
+        }
     }
 }

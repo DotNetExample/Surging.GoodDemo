@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MicroService.Data.Ext;
 using MicroService.IApplication.Order;
@@ -15,8 +14,8 @@ using MicroService.Data.Validation;
 using MicroService.Application.Order.Validators;
 using MicroService.Data.Extensions;
 using MicroService.Data.Common;
-using System.Data;
-using System.Data.Common;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicroService.Application.Order
 {
@@ -66,6 +65,11 @@ namespace MicroService.Application.Order
 
             if (domainException.ValidationErrors.ErrorItems.Any()) throw domainException;
         }
+        /// <summary>
+          /// 新增
+          /// </summary>
+          /// <param name="orderInfoRequestDto"></param>
+          /// <returns></returns>
         public async Task<JsonResponse> CreateAsync(OrderInfoRequestDto orderInfoRequestDto)
         {
          
@@ -80,7 +84,11 @@ namespace MicroService.Application.Order
               });
             return resJson;
         }
-
+        /// <summary>
+        /// 批量新增
+        /// </summary>
+        /// <param name="orderInfoRequestDtos"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> BatchCreateAsync(IList<OrderInfoRequestDto> orderInfoRequestDtos)
         {
             var resJson = await TryTransactionAsync(async () =>
@@ -94,6 +102,26 @@ namespace MicroService.Application.Order
             return resJson;
         }
 
+      
+        /// <summary>
+        /// 分页获取
+        /// </summary>
+        /// <param name="orderInfoPageRequestDto"></param>
+        /// <returns></returns>
+
+        public async Task<PageData> GetPageListAsync( OrderInfoPageRequestDto orderInfoPageRequestDto)
+        {
+            var pageData = new PageData(orderInfoPageRequestDto.PageIndex, orderInfoPageRequestDto.PageSize);
+            var list = await _orderRespository.Entities(e=>e.IsDelete==false).ToPaginated(pageData).ToListAsync();
+
+            return pageData;
+
+        }
+        /// <summary>
+        /// 获取详情
+        /// </summary>
+        /// <param name="entityQueryRequest"></param>
+        /// <returns></returns>
         public async Task<OrderInfoQueryDto> GetForModifyAsync(EntityQueryRequest entityQueryRequest)
         {
             var entity = await _orderRespository.Entities(e => e.Id == entityQueryRequest.Id).SingleOrDefaultAsync();
@@ -103,17 +131,11 @@ namespace MicroService.Application.Order
             }
             return null;
         }
-
-
-        public async Task<IEnumerable<OrderInfoQueryDto>> GetPageListAsync( OrderInfoPageRequestDto orderInfoPageRequestDto)
-        {
-            var pageData = new PageData(orderInfoPageRequestDto.PageIndex, orderInfoPageRequestDto.PageSize);
-            var list = await _orderRespository.Entities(e=>e.IsDelete==false).ToPaginated(pageData).ToListAsync();
-
-            return list.MapToList<OrderInfo, OrderInfoQueryDto>();
-
-        }
-
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="orderInfoRequestDto"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> ModifyAsync(OrderInfoRequestDto orderInfoRequestDto)
         {
            
@@ -127,6 +149,11 @@ namespace MicroService.Application.Order
             return resJson;
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         public async Task<JsonResponse> RemoveAsync(params string[] ids)
         {
             var resJson = await TryTransactionAsync(async () =>

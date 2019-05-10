@@ -13,7 +13,7 @@ namespace MicroService.IApplication.Order.Dto
     [Serializable]
     public class OrderInfoPageRequestDto : PageData
     {
-
+        
         /// <summary>
         /// 订单号
         /// </summary>

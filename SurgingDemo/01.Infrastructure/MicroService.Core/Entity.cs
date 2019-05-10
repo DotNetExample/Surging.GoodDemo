@@ -32,8 +32,9 @@ namespace MicroService.Core
 
         [Column("IsDelete", TypeName = "bit")]
         [DefaultValue(false)]
+        [Required]
         public virtual bool IsDelete { set; get; }
-
+        [Required]
         public virtual DateTime CreateDate { set; get; }
 
         //[ConcurrencyCheck()]
