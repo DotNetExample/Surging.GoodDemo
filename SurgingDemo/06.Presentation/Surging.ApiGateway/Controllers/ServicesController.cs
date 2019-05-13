@@ -62,15 +62,16 @@ namespace Surging.ApiGateway.Controllers
             {
                 if (path == GateWayAppConfig.AuthorizationRoutePath)
                 {
-                    var token = await _authorizationServerProvider.GenerateTokenCredential(model);
-                    if (token != null)
+                    var oAuthUser = await _authorizationServerProvider.GenerateTokenCredential(model);
+
+                    if (oAuthUser.IsSucceed)
                     {
-                        result = ServiceResult<object>.Create(true, token);
+                        result = ServiceResult<object>.Create(true, oAuthUser.Token);
                         result.StatusCode = (int)ServiceStatusCode.Success;
                     }
                     else
                     {
-                        result = new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.AuthorizationFailed, Message = "Invalid authentication credentials" };
+                        result = new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.AuthorizationFailed, Message= oAuthUser .Message};// Message = "Invalid authentication credentials" };
                     }
                 }
                 else

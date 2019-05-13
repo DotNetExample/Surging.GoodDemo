@@ -30,21 +30,29 @@ namespace Surging.Core.ApiGateWay.OAuth
             _cacheProvider = CacheContainer.GetService<ICacheProvider>(AppConfig.CacheMode);
         }
 
-        public async Task<string> GenerateTokenCredential(Dictionary<string, object> parameters)
+        public async Task<OAuthUser> GenerateTokenCredential(Dictionary<string, object> parameters)
         {
+            OAuthUser oAuthUser = new OAuthUser() { IsSucceed=false};
+
             string result = null;
             var payload = await _serviceProxyProvider.Invoke<object>(parameters,AppConfig.AuthorizationRoutePath, AppConfig.AuthorizationServiceKey);
+
             if (payload!=null && !payload.Equals("null") )
             {
-                var jwtHeader = JsonConvert.SerializeObject(new JWTSecureDataHeader() { TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") });
-                var base64Payload = ConverBase64String(JsonConvert.SerializeObject(payload));
-                var encodedString = $"{ConverBase64String(jwtHeader)}.{base64Payload}";
-                var route = await _serviceRouteProvider.GetRouteByPath(AppConfig.AuthorizationRoutePath);
-                var signature = HMACSHA256(encodedString, route.ServiceDescriptor.Token);
-                result= $"{encodedString}.{signature}";
-                _cacheProvider.Add(base64Payload, result,AppConfig.AccessTokenExpireTimeSpan);
+                oAuthUser = JsonConvert.DeserializeObject<OAuthUser>(payload.ToString());
+                if (oAuthUser.IsSucceed)
+                {
+                    var jwtHeader = JsonConvert.SerializeObject(new JWTSecureDataHeader() { TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") });
+                    var base64Payload = ConverBase64String(JsonConvert.SerializeObject(payload));
+                    var encodedString = $"{ConverBase64String(jwtHeader)}.{base64Payload}";
+                    var route = await _serviceRouteProvider.GetRouteByPath(AppConfig.AuthorizationRoutePath);
+                    var signature = HMACSHA256(encodedString, route.ServiceDescriptor.Token);
+                    result = $"{encodedString}.{signature}";
+                    oAuthUser.Token = result;
+                    _cacheProvider.Add(base64Payload, result, AppConfig.AccessTokenExpireTimeSpan);
+                }
             }
-            return result;
+            return oAuthUser;
         }
 
         public string GetPayloadString(string token)

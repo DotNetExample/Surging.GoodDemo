@@ -25,13 +25,11 @@ namespace MicroService.Application.Order
     {
         public IOrderDetailRespository _orderDetailRespository;
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork;
 
-        public OrderDetailAppService(IOrderDetailRespository orderDetailRespository, IUnitOfWork unitOfWork,
+        public OrderDetailAppService(IOrderDetailRespository orderDetailRespository,
           IMapper mapper)
         {
             _orderDetailRespository = orderDetailRespository;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         /// <summary>
@@ -74,8 +72,7 @@ namespace MicroService.Application.Order
                   var OrderDetail = _mapper.Map<OrderDetailRequestDto, OrderDetail>(OrderDetailRequestDto);
                   await DoValidationAsync(OrderDetail, ValidatorTypeConstants.Create);
                   await _orderDetailRespository.InsertAsync(OrderDetail);
-
-                  await _unitOfWork.SaveChangesAsync();
+                  
               });
             return resJson;
         }
@@ -87,8 +84,7 @@ namespace MicroService.Application.Order
                 var entities = OrderDetailRequestDtos.MapToList<OrderDetailRequestDto, OrderDetail>();
                 await DoValidationAsync(entities, ValidatorTypeConstants.Create);
                 await _orderDetailRespository.BatchInsertAsync(entities);
-
-                await _unitOfWork.SaveChangesAsync();
+                
             });
             return resJson;
         }

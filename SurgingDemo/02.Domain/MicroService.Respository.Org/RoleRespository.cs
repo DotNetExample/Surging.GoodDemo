@@ -9,7 +9,7 @@ namespace MicroService.Respository.Org
 {
     public class RoleRespository : RespositoryBase<MicroService.Entity.Org.Role>, IRoleRespository
     {
-        public RoleRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
+        public RoleRespository()
         {
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Surging.Core.CPlatform.Engines.Implementation;
 using Surging.Core.CPlatform.Utilities;
 
-namespace MicroService.Server.Product
+namespace MicroService.ServerHost.Product
 {
     public class SurgingServiceEngine : VirtualPathProviderServiceEngine
     {

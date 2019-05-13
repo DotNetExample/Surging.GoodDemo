@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
-namespace MicroService.Server.Org
+namespace MicroService.ServerHost.Org
 {
    public class DefaultModuleRegister: Autofac.Module
     {

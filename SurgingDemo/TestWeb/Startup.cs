@@ -30,12 +30,17 @@ namespace TestWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SqlServerDbContext>(opt =>
-            {
+            #region 跨域
+            services.AddCors(options =>
+                options.AddPolicy("AllowSameDomain",
+                    bu => bu.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials())
+            );
 
-            });
+
+            #endregion
+            var factoryContext = new FactoryUnitOfWorkDbContext();
+            factoryContext.AddDbContext(services);
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, SqlServerDbContext>();
             //依赖注入
           
           
@@ -56,7 +61,7 @@ namespace TestWeb
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowSameDomain");
             app.UseMvc();
         }
     }

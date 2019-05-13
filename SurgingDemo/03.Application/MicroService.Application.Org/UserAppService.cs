@@ -24,13 +24,11 @@ namespace MicroService.Application.Order
     {
         public IUserRespository _userRespository;
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork;
 
-        public UserAppService(IUserRespository userRespository, IUnitOfWork unitOfWork,
+        public UserAppService(IUserRespository userRespository,
           IMapper mapper)
         {
             _userRespository = userRespository;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
@@ -51,8 +49,7 @@ namespace MicroService.Application.Order
                   var person = _mapper.Map<UserRequestDto, User>(personRequestDto);
                   await DoValidationAsync(person, ValidatorTypeConstants.Create);
                   await _userRespository.InsertAsync(person);
-
-                  await _unitOfWork.SaveChangesAsync();
+                  
               });
             return resJson;
         }
@@ -62,7 +59,6 @@ namespace MicroService.Application.Order
             var person = _mapper.Map<UserRequestDto, User>(userRequestDto);
             await _userRespository.InsertAsync(person);
             var res= await _userRespository.InsertAndGetIdAsync(person);
-            await _unitOfWork.SaveChangesAsync();
             return res;
         }
         public async Task<int> Test(int a)
@@ -85,15 +81,16 @@ namespace MicroService.Application.Order
 
         public async Task<LoginUser> Login(UserRequestDto userRequestDto)
         {
-          var result=  await _userRespository.GetAllListAsync(u => u.Name == userRequestDto.Name &&
-             u.Password == userRequestDto.Password);
-           var user= result.SingleOrDefault();
-
+          var user =  await _userRespository.Entities(u => u.Name == userRequestDto.Name &&
+             u.Password == userRequestDto.Password).SingleOrDefaultAsync();
+         //  var user= result.FirstOrDefault;
+          //  _unitOfWork.Dispose();
             if (user == null)
             {
-                return await Task.FromResult<LoginUser>(null);
+                var _loginUser = new LoginUser() { IsSucceed = false, Message = "用户名或密码错误!" };
+                return await Task.FromResult<LoginUser>(_loginUser);
             }
-            return await Task.FromResult(new LoginUser() { Id=user.Id, UserId=user.Id, Name=user.Name, RoleId=user.RoleId,
+            return await Task.FromResult(new LoginUser() {IsSucceed=true, Id=user.Id, UserId=user.Id, Name=user.Name, RoleId=user.RoleId,
              PhoneCode=user.PhoneCode});
 
         }

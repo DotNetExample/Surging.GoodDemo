@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Application", "03.Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06.Presentation", "06.Presentation", "{40736A18-06E6-4019-873D-6B1959E3AB94}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.MicroServices", "05.MicroServices", "{0FB5675C-38B9-48A7-B264-F75B360175D4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.ServerHost", "05.ServerHost", "{0FB5675C-38B9-48A7-B264-F75B360175D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderApplication", "OrderApplication", "{39FBF026-821F-4CAD-9BD8-13DE849F3E9D}"
 EndProject
@@ -125,11 +125,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.IModules.Produ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Modules.Product", "04.Modules\MicroService.Modules.Product\MicroService.Modules.Product.csproj", "{30677C58-C5FB-4BE7-B3DF-D8C721D9ED1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Server.Order", "05.MicroServices\MicroService.Server.Order\MicroService.Server.Order.csproj", "{D701D75F-F0AC-43BD-95C4-4E8F732C0367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ServerHost.Order", "05.MicroServices\MicroService.Server.Order\MicroService.ServerHost.Order.csproj", "{D701D75F-F0AC-43BD-95C4-4E8F732C0367}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Server.Org", "05.MicroServices\MicroService.Server.Org\MicroService.Server.Org.csproj", "{4A1FADF0-15F8-4B41-A8BF-ED15638CDDAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ServerHost.Org", "05.MicroServices\MicroService.Server.Org\MicroService.ServerHost.Org.csproj", "{4A1FADF0-15F8-4B41-A8BF-ED15638CDDAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Server.Product", "05.MicroServices\MicroService.Server.Product\MicroService.Server.Product.csproj", "{EB47E49A-584D-4EBF-821E-4114600F396F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ServerHost.Product", "05.MicroServices\MicroService.Server.Product\MicroService.ServerHost.Product.csproj", "{EB47E49A-584D-4EBF-821E-4114600F396F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surging.ApiGateway", "06.Presentation\Surging.ApiGateway\Surging.ApiGateway.csproj", "{4830C5EC-2BA5-40AF-8A1F-55F7339A9CA4}"
 EndProject
@@ -141,7 +141,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.EntityFramwork
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.EntityFramwork.Oracle", "01.Infrastructure\MicroService.EntityFramwork.Oracle\MicroService.EntityFramwork.Oracle.csproj", "{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{C210C1FF-9908-465A-B659-85DAD43973F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWeb", "TestWeb\TestWeb.csproj", "{C210C1FF-9908-465A-B659-85DAD43973F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

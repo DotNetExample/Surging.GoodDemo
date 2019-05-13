@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using MicroService.EntityFramwork;
 using MicroService.EntityFramwork.Mysql;
+using MicroService.Modules.Org;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
@@ -12,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroService.Server.Org
+namespace MicroService.ServerHost.Org
 {
     public class Startup
     {
@@ -25,13 +26,12 @@ namespace MicroService.Server.Org
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-
-            services.AddDbContext<MySqlDbContext>(opt =>
-            {
-
-            });
+            var factoryContext = new FactoryUnitOfWorkDbContext();
+            factoryContext.AddDbContext(services);
+            // services.AddDbContext<IUnitOfWorkDbContext, MySqlDbContext>();
+            // services.AddDbContext<MySqlDbContext>();
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
+          //  services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
             //依赖注入

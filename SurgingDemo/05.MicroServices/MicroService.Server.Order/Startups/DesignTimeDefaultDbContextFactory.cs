@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace MicroService.Server.Order
+namespace MicroService.ServerHost.Order
 {
     public class DesignTimeDefaultDbContextFactory : DesignTimeDbContextFactoryBase<MySqlDbContext>
     {

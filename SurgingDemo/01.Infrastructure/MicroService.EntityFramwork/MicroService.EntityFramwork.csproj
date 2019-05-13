@@ -18,6 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MicroService.Core\MicroService.Core.csproj" />
     <ProjectReference Include="..\MicroService.Data\MicroService.Data.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork.Mysql\MicroService.EntityFramwork.Mysql.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork.Oracle\MicroService.EntityFramwork.Oracle.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

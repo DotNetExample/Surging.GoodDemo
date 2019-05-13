@@ -1,6 +1,7 @@
 
 import { parse } from 'qs';
 import { Authentication,Regisger } from '../services/Login'
+import {message} from 'antd';
 import com from '../utils/commom'
 export default {
   namespace: 'login',
@@ -18,9 +19,10 @@ export default {
       const { data } = yield call(Regisger, parse({userRequestDto:payload}))
       if(data&&data.IsSucceed&&data.StatusCode===200){
         
-        yield put({
-          type:'RegisterToggle'
-        })
+        message.success('注册成功!')
+        // yield put({
+        //   type:'RegisterToggle'
+        // })
       }
       
     },
@@ -35,6 +37,8 @@ export default {
           yield put({
             type:'authorize/Power'
           })
+        }else{
+          message.error(data.Message)
         }
     },
   },

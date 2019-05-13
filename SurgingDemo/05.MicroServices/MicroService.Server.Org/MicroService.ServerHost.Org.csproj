@@ -1,18 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <StartupObject />
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.2.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,13 +32,13 @@
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\WebSocket\WebSocketCore\WebSocketCore.csproj" />
-    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
-    <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Product\MicroService.IRespository.Product.csproj" />
-    <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Product\MicroService.Respository.Product.csproj" />
-    <ProjectReference Include="..\..\03.Application\MicroService.Application.Product\MicroService.Application.Product.csproj" />
-    <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Product\MicroService.IApplication.Product.csproj" />
-    <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Product\MicroService.IModules.Product.csproj" />
-    <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Product\MicroService.Modules.Product.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Org\MicroService.IRespository.Org.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Org\MicroService.Respository.Org.csproj" />
+    <ProjectReference Include="..\..\03.Application\MicroService.Application.Org\MicroService.Application.Org.csproj" />
+    <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Org\MicroService.IApplication.Org.csproj" />
+    <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Org\MicroService.IModules.Org.csproj" />
+    <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Org\MicroService.Modules.Org.csproj" />
   </ItemGroup>
 
   <ItemGroup>

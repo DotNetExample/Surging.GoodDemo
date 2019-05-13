@@ -8,8 +8,9 @@ using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 using AutoMapper;
 using MicroService.EntityFramwork.SqlServer;
+using MicroService.EntityFramwork.Mysql;
 
-namespace MicroService.Server.Product
+namespace MicroService.ServerHost.Product
 {
     public class Startup
     {
@@ -22,12 +23,16 @@ namespace MicroService.Server.Product
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-            services.AddDbContext<SqlServerDbContext>(opt =>
-            {
+            var factoryContext = new FactoryUnitOfWorkDbContext();
+            factoryContext.AddDbContext(services);
+            //var cont = factoryContext.GetDbContext();
+            //services.AddDbContext<MySqlDbContext>(opt =>
+            //{
 
-            });
+            //});
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, SqlServerDbContext>();
+          //  services.AddScoped<IUnitOfWorkDbContext, SqlServerDbContext>();
+            
             ConfigureLogging(services);
             builder.Populate(services);
             //依赖注入

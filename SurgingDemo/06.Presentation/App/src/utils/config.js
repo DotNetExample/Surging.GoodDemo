@@ -3,7 +3,7 @@ export default{
     ip2:'https://fpzs.crec.cn/InvoiceAssistant/',//'http://127.0.0.1:5004',//
     fileIp:'http://139.224.186.130:8099/',
     appId:'wx99cf6decfaf7d04e',
-    pkey:'domainUserCode',
+    pkey:'domainUserCodeSurging',
     pageSize:12,
     isdebug:true
 }

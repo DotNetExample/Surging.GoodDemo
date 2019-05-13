@@ -22,6 +22,9 @@ namespace MicroService.Core.Data
 
 
         DbContext GetDbContext();
+
+
+        void Dispose();
        
     }
 }

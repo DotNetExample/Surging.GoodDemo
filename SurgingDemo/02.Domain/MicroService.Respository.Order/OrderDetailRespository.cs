@@ -9,7 +9,7 @@ namespace MicroService.Respository.Order
 {
     public class OrderDetailRespository : RespositoryBase<OrderDetail>, IOrderDetailRespository
     {
-        public OrderDetailRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
+        public OrderDetailRespository()
         {
         }
     }

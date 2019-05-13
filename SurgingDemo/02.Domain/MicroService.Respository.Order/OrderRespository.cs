@@ -8,7 +8,7 @@ namespace MicroService.Respository.Order
 {
     public class OrderRespository : RespositoryBase<OrderInfo>, IOrderRespository
     {
-        public OrderRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
+        public OrderRespository()
         {
 
         }

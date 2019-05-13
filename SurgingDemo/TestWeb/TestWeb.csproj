@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\01.Infrastructure\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
+    <ProjectReference Include="..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\02.Domain\MicroService.IRespository.Product\MicroService.IRespository.Product.csproj" />
     <ProjectReference Include="..\02.Domain\MicroService.Respository.Product\MicroService.Respository.Product.csproj" />
     <ProjectReference Include="..\03.Application\MicroService.Application.Product\MicroService.Application.Product.csproj" />

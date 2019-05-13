@@ -25,13 +25,11 @@ namespace MicroService.Application.Product
 
         public IGoodsRespository _personRespository;
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork;
 
-        public GoodsAppService(IGoodsRespository personRespository, IUnitOfWork unitOfWork,
+        public GoodsAppService(IGoodsRespository personRespository,
           IMapper mapper)
         {
             _personRespository = personRespository;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
@@ -52,8 +50,6 @@ namespace MicroService.Application.Product
                 var person = _mapper.Map<GoodsRequestDto, Goods>(goodsRequestDto);
                 await DoValidationAsync(person, ValidatorTypeConstants.Create);
                 await _personRespository.InsertAsync(person);
-
-                await _unitOfWork.SaveChangesAsync();
             });
             return resJson;
         }

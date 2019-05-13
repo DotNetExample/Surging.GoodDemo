@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using MicroService.IApplication.Product;
 using MicroService.IApplication.Product.Dto;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TestWeb.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowSameDomain")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -31,8 +33,19 @@ namespace TestWeb.Controllers
         public async Task<object> Get()
         {
             GoodsoPageRequestDto goodsoPageRequestDto = new GoodsoPageRequestDto();
-            var sb= await _goodsAppService.GetPageListAsync(goodsoPageRequestDto);
-            return await  Task.FromResult(sb);
+            //   var sb= await _goodsAppService.GetPageListAsync(goodsoPageRequestDto);
+            var sb = await _goodsAppService.Create(new GoodsRequestDto()
+            {
+                Id = Guid.NewGuid().ToString(),
+                CoverImgSrc = "",
+                CreateDate = DateTime.Now,
+                Details = "de",
+                IsDelete = false,
+                Name = "苹果123",
+                Price = 123,
+                StockNum = 200
+            });
+            return await Task.FromResult(sb);
         }
 
         // POST api/values

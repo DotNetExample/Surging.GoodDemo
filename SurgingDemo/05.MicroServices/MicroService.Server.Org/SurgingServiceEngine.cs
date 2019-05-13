@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroService.Server.Org
+namespace MicroService.ServerHost.Org
 {
     public class SurgingServiceEngine : VirtualPathProviderServiceEngine
     {

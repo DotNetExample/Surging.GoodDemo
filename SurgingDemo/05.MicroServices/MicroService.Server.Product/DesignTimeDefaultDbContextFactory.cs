@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace MicroService.Server.Product
+namespace MicroService.ServerHost.Product
 {
    public class DesignTimeDefaultDbContextFactory: DesignTimeDbContextFactoryBase<SqlServerDbContext>
     {

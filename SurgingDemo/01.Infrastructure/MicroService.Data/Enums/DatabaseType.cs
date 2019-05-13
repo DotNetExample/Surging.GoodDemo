@@ -11,9 +11,9 @@ namespace MicroService.Data.Enums
         /// </summary>
         SqlServer,
         /// <summary>
-        /// Sqlite数据库类型
+        /// Oracle数据库类型
         /// </summary>
-        Sqlite,
+        Oracle,
         /// <summary>
         /// MySql数据库类型
         /// </summary>

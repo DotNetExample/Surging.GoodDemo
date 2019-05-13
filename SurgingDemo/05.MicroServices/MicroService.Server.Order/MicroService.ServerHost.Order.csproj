@@ -8,7 +8,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.1.1" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
@@ -35,7 +34,7 @@
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\WebSocket\WebSocketCore\WebSocketCore.csproj" />
-    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.Mysql\MicroService.EntityFramwork.Mysql.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Order\MicroService.Respository.Order.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.Application.Order\MicroService.Application.Order.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Order\MicroService.IModules.Order.csproj" />

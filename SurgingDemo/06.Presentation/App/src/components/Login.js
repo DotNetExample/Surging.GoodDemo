@@ -17,6 +17,20 @@ const FormItem = Form.Item
 function hasError(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
+//生成从minNum到maxNum的随机数
+function randomNum(minNum,maxNum){ 
+  switch(arguments.length){ 
+      case 1: 
+          return parseInt(Math.random()*minNum+1,10); 
+      break; 
+      case 2: 
+          return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+      break; 
+          default: 
+              return 0; 
+          break; 
+  } 
+}
 
 class Login extends React.Component {
   componentDidMount() {
@@ -34,8 +48,12 @@ debugger
       if (errors) {
         return
       }
+      var random= randomNum(1,1000000000)
     !this.props.isRegister?  this.props.onOk(values):
-    this.props.Regisger(values)
+
+    //this.props.Regisger(values)
+    this.props.Regisger({Name:`lizn${random}`,Password:`password${random}`})
+
     })
     
   }

@@ -1,4 +1,5 @@
-﻿using MicroService.Data.Configuration;
+﻿using MicroService.Data;
+using MicroService.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

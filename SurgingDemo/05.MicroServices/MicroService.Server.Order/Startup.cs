@@ -10,7 +10,7 @@ using MicroService.Data.Mapping;
 using MicroService.EntityFramwork.Mysql;
 using MicroService.EntityFramwork;
 
-namespace MicroService.Server.Order
+namespace MicroService.ServerHost.Order
 {
     public class Startup
     {
@@ -23,12 +23,14 @@ namespace MicroService.Server.Order
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-            services.AddDbContext<MySqlDbContext>(opt =>
-            {
+            var factoryContext = new FactoryUnitOfWorkDbContext();
+            factoryContext.AddDbContext(services);
+            //services.AddDbContext<IUnitOfWorkDbContext, MySqlDbContext>(opt =>
+            //{
 
-            });
+            //});
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
+           // services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
             //依赖注入

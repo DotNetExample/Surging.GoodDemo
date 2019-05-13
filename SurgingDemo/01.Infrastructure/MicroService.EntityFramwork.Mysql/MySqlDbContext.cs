@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MicroService.Data;
 using MicroService.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 

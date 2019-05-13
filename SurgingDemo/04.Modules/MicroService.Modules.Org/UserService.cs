@@ -31,6 +31,22 @@ namespace MicroService.Modules.Org
             userRequestDto.PhoneCode = "1111111";
             userRequestDto.RoleId = "9e056c68-1939-11e9-a939-00163e14af03";
             return await _userAppService.CreateAsync(userRequestDto);
+
+            //using (var testDbContext = new TestDbContext())
+            //{
+            //    await testDbContext.Users.AddAsync(new Model.User()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        CreateDate = DateTime.Now,
+            //        IsDelete = false,
+            //        Name = userRequestDto.Name,
+            //        Password = userRequestDto.Password,
+            //        PhoneCode = "111",
+            //        RoleId = userRequestDto.RoleId
+            //    });
+            //    var result = await testDbContext.SaveChangesAsync();
+            //}
+            //return new JsonResponse();
         }
     }
    

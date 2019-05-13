@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
-namespace MicroService.Server.Order
+namespace MicroService.ServerHost.Order
 {
    public class DefaultModuleRegister: Autofac.Module
     {

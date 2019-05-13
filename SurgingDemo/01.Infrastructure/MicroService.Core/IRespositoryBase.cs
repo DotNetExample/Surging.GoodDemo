@@ -20,8 +20,8 @@ namespace MicroService.Core
         where TEntity :class
     {
 
-
-       
+        int SaveChanges();
+        Task<int> SaveChangesAsync();
 
 
         #region Select/Get/Query
@@ -147,7 +147,7 @@ namespace MicroService.Core
         #endregion
 
         #region Insert
-        Task Add(TEntity entity, bool isSave = true);
+      
 
         /// <summary>
         /// Inserts a new entity.

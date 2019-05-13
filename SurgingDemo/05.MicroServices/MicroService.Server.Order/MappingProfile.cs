@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroService.Server.Order
+namespace MicroService.ServerHost.Order
 {
     public class MappingProfile : Profile, IProfile
     {

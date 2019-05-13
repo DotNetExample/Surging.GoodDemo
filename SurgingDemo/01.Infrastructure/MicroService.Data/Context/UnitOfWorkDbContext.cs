@@ -4,7 +4,6 @@ using MicroService.Data.Configuration;
 using MicroService.Data.Constant;
 using MicroService.Data.Mapping;
 using MicroService.Data.Utilities;
-using MicroService.EntityFramwork.Initialize;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ using System.Runtime.Loader;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MicroService.EntityFramwork
+namespace MicroService.Data
 {
   public   class UnitOfWorkDbContext:DbContext, IUnitOfWorkDbContext
     {

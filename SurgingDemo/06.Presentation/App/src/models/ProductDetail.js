@@ -32,7 +32,7 @@ export default {
 
       if(data&&data.IsSucceed){
           var json=JSON.parse(data.Entity);
-          if(json.IsValid){
+          if(json&&json.IsValid){
             message.success("购买成功!")
           }
       }

@@ -24,13 +24,11 @@ namespace MicroService.Application.Order
     {
         public IOrderRespository _orderRespository;
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork;
 
-        public OrderAppService(IOrderRespository orderRespository, IUnitOfWork unitOfWork,
+        public OrderAppService(IOrderRespository orderRespository, 
           IMapper mapper)
         {
             _orderRespository = orderRespository;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         /// <summary>
@@ -79,8 +77,8 @@ namespace MicroService.Application.Order
                   var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(orderInfoRequestDto);
                   await DoValidationAsync(orderInfo, ValidatorTypeConstants.Create);
                   await _orderRespository.InsertAsync(orderInfo);
-
-                  await _unitOfWork.SaveChangesAsync();
+                  
+                 
               });
             return resJson;
         }
@@ -96,8 +94,7 @@ namespace MicroService.Application.Order
                 var entities = orderInfoRequestDtos.MapToList<OrderInfoRequestDto, OrderInfo>();
                 await DoValidationAsync(entities, ValidatorTypeConstants.Create);
                 await _orderRespository.BatchInsertAsync(entities);
-
-                await _unitOfWork.SaveChangesAsync();
+                
             });
             return resJson;
         }
@@ -144,7 +141,6 @@ namespace MicroService.Application.Order
                 var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(orderInfoRequestDto);
                 await DoValidationAsync(orderInfo, ValidatorTypeConstants.Modify);
                 await _orderRespository.UpdateAsync(orderInfo);
-                await _unitOfWork.SaveChangesAsync();
             });
             return resJson;
         }
@@ -165,7 +161,6 @@ namespace MicroService.Application.Order
                        e.IsDelete = true;
                    });
                 });
-                await _unitOfWork.SaveChangesAsync();
             });
            return resJson;
         }

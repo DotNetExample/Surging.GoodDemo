@@ -9,9 +9,10 @@ namespace MicroService.Respository.Order
 {
     public class UserRespository : RespositoryBase<User>, IUserRespository
     {
-        public UserRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
+       
+        public UserRespository()
         {
-
+           
         }
     }
 }

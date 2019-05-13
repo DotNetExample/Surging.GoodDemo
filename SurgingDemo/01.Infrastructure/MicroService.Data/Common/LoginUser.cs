@@ -8,6 +8,9 @@ namespace MicroService.Data.Common
 {
     public class LoginUser: BaseDto
     {
+        public bool IsSucceed { set; get; }
+
+        public string Message { set; get; }
 
         public string RoleId { set; get; }
 

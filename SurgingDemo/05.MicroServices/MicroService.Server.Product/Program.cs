@@ -11,7 +11,7 @@ using Surging.Core.ServiceHosting;
 using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Configurations;
 
-namespace MicroService.Server.Product
+namespace MicroService.ServerHost.Product
 {
     class Program
     {
